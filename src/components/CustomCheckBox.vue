@@ -4,13 +4,13 @@
       <span class="input-label"> {{ inputLabel }} </span>
       <span class="required" v-show="isRequired">*</span>
     </div>
-    <input class="input" type="text" v-model="model">
+    <input class="checkbox" v-model="model" type="checkbox">
   </div>
 </template>
 
 <script>
 export default {
-  name: "CustomInput",
+  name: "CustomCheckBox",
 
   data () {
     return {
@@ -20,7 +20,7 @@ export default {
 
   props: {
     inputLabel: {
-      type: String
+      required: true
     },
     isRequired: {
       default: false
@@ -43,8 +43,8 @@ export default {
 
   .input-wrapper {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
     box-sizing: border-box;
     margin-top: 10px;
   }
@@ -56,22 +56,6 @@ export default {
 
   .required {
     color: red;
-  }
-
-  .input {
-    outline: none;
-    width: 250px;
-    font-size: 14px;
-    margin-top: 4px;
-    padding: 5px 10px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    border: 2px solid #e6e6e6;
-    background: #e6e6e6;
-  }
-
-  .input:focus {
-    border: 2px solid #48d294;
   }
 
 </style>

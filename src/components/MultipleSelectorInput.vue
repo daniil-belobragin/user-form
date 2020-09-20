@@ -4,17 +4,20 @@
       <span class="input-label"> {{ inputLabel }} </span>
       <span class="required" v-show="isRequired">*</span>
     </div>
-    <input class="input" type="text" v-model="model">
+    <select class="input" v-model="model" multiple>
+      <option disabled>Выбирите варианты</option>
+      <option v-for="option in options" :key="option.id" :value="option.value"> {{ option.value }} </option>
+    </select>
   </div>
 </template>
 
 <script>
 export default {
-  name: "CustomInput",
+  name: "MultipleSelectorInput",
 
   data () {
     return {
-      model: ""
+      model: []
     }
   },
 
@@ -23,7 +26,11 @@ export default {
       type: String
     },
     isRequired: {
-      default: false
+      default: false,
+    },
+    options: {
+      type: Array,
+      required: true
     },
     changed: {
       type: Function,
@@ -61,7 +68,7 @@ export default {
   .input {
     outline: none;
     width: 250px;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 4px;
     padding: 5px 10px;
     border-radius: 4px;

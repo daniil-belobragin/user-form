@@ -4,16 +4,18 @@
       <span class="input-label"> {{ inputLabel }} </span>
       <span class="required" v-show="isRequired">*</span>
     </div>
-    <input class="input" type="text" v-model="model">
+    <input class="input" v-model="model" :min="min" :max="max" type="date">
   </div>
 </template>
 
 <script>
 export default {
-  name: "CustomInput",
+  name: "DatePicker",
 
   data () {
     return {
+      min: "1920-01-01",
+      max: "2014-01-01",
       model: ""
     }
   },
@@ -35,6 +37,10 @@ export default {
     model (newValue) {
       this.changed(newValue)
     }
+  },
+
+  mounted() {
+    this.model = this.max
   }
 }
 </script>
@@ -61,7 +67,7 @@ export default {
   .input {
     outline: none;
     width: 250px;
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 4px;
     padding: 5px 10px;
     border-radius: 4px;
@@ -73,5 +79,4 @@ export default {
   .input:focus {
     border: 2px solid #48d294;
   }
-
 </style>
